@@ -1,0 +1,27 @@
+footer {
+  border-top: 1px solid #dcdddd;
+  z-index: 999;
+  position: fixed;
+  height: 1.40740741rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+}
+footer .item {
+  float: left;
+  width: 25%;
+  padding: .148148148rem 0px;
+}
+footer div a {
+  color: #9b9b9b;
+}
+footer div img {
+  width: .648148148rem;
+  height: .648148148rem;
+}
+.active {
+  color: #119df8;
+}

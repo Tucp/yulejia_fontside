@@ -1,0 +1,31 @@
+header {
+  height: 1.35185185rem;
+  border-bottom: 1px solid #dcdddd;
+  /*font-size: .462962963rem;*/
+  font-size: 18px;
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 999;
+  overflow: hidden;
+}
+header p {
+  text-align: center;
+  line-height: 1.35185185rem;
+  color: #3e3a39;
+}
+header i {
+  border-top: .0462962963rem solid #9b9b9c;
+  border-left: .0462962963rem solid #9b9b9c;
+  height: .297777778rem;
+  width: .297777778rem;
+  transform: rotate(-45deg);
+  position: absolute;
+  left: .4259259256rem;
+  top: .5rem;
+}
+.back {
+  color: #b5b5b6;
+}

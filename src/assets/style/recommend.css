@@ -1,0 +1,42 @@
+.related {
+  height: 3.18518519rem;
+}
+.related div {
+  text-align: center;
+  width: 33.33333333%;
+  float: left;
+  padding-top: .462962963rem;
+}
+.related img {
+  width: 1.38888889rem;
+  height: 1.38888889rem;
+}
+.related p {
+  line-height: 1.11111111rem;
+  font-size: .388888889rem;
+  color: #3e3a39;
+}
+.headlines {
+  border-top: 1px solid #f0f0f0;
+  height: .925925926rem;
+  padding-left: .407407407rem;
+  font-size: .351851852rem;
+  color: #ababab;
+}
+.headlines img {
+  width: 1.03703704rem;
+  height: .37962963rem;
+  margin-top: .259359259rem;
+}
+.headlines i {
+  margin: 0 .185185185rem;
+  display: inline-block;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: #dcdddd;
+}
+.list-head img {
+  height: .925925926rem;
+  width: 100%;
+}

@@ -1,0 +1,90 @@
+.fishfield-item {
+  background-color: #fff;
+  border-bottom: .2777777779rem solid #f0f0f0;
+}
+.fishfield-item .main {
+  padding: .425925926rem;
+}
+.fishfield-item .main .img {
+  width: 3.7222222rem;
+  height: 2.7962963rem;
+}
+.fishfield-item .main .intro {
+  width: 5.05555556rem;
+  float: right;
+  padding-top: .2777777778rem;
+}
+.fishfield-item .intro div {
+  height: .833333333rem;
+}
+.fishfield-item .intro p {
+  font-size: 12px;
+  float: left;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  width: 3rem;
+}
+.fishfield-item .intro .name img {
+  margin-left: .11111111rem;
+  width: .314814815rem;
+  height: .314814815rem;
+}
+.fishfield-item .intro button {
+  float: right;
+  width: 1.85185185rem;
+  height: .55555556rem;
+  font-size: 12px;
+  border-radius: 3px;
+  border: 1px solid #119df8;
+}
+.fishfield-item .intro button span {
+  font-size: 14px;
+  font-weight: 700;
+  margin-right: .1rem;
+}
+.fishfield-item .intro .name button {
+  background-color: #fff;
+  color: #119df8;
+}
+.fishfield-item .intro .distance button {
+  background-color: #119df8;
+  color: #fff;
+}
+.fishfield-item .main .type {
+  height: 1rem;
+}
+.fishfield-item .main .type p {
+  background-color: #fffcd8;
+  border: 1px solid #f39800;
+  color: #f39800;
+  text-align: center;
+  height: .55555556rem;
+  padding: 0 .177777778rem;
+  font-size: 12px;
+  border-radius: .55555556rem;
+  line-height: .55555556rem;
+  margin-right: .1rem;
+  width: 23%;
+}
+.fishfield-item .recommend {
+  border-top: 1px solid #f0f0f0;
+  /*height: .944444444rem;*/
+  background-color: #fff;
+}
+.fishfield-item .recommend span {
+  font-size: 14px;
+  border: 1px solid #f39800;
+  /*padding: .0925925926rem .12962963rem;*/
+  padding: 0 .0925925926rem;
+  color: #f39800;
+  margin-right: .277777778rem;
+  border-radius: 3px;
+}
+.fishfield-item .recommend p {
+  padding-left: .425925926rem;
+  /*height: 100%;*/
+  line-height: .944444444rem;
+  font-size: 13px;
+  color: #898989;
+}
