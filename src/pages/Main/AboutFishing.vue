@@ -18,7 +18,7 @@
         </div>
       </router-link>
     </div>
-    <router-view></router-view>
+      <router-view></router-view>
   </div>
 </template>
 
@@ -26,6 +26,14 @@
 import { Toast } from 'mint-ui'
 
 export default {
+  data() {
+    return {
+      isShowAdd: true
+    }
+  },
+  created() {
+    this.$store.dispatch('changeNavbarActive', 1)
+  },
   mounted () {
     this.$store.commit('changeIndex', 1)
     // 设置参照物与比较物
@@ -47,14 +55,6 @@ export default {
             t = p
         }, 0)
     })
-  },
-  data() {
-    return {
-      isShowAdd: true
-    }
-  },
-  created() {
-    this.$store.dispatch('changeNavbarActive', 1)
   },
   methods: {
     addyuediao() {

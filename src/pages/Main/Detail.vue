@@ -30,9 +30,11 @@
       </div>
       <div class="intro" v-html="detail.content">
       </div>
+
       <div class="img" v-for="(item, index) in detail.photo">
-        <img v-lazy="this.img_url+item" @click="open(index)">
+        <img v-lazy="'http://ylj.tscce.cn/uploads/images/'+item" @click="open(index)">
       </div>
+
       <div class="information">
         <div class="tel">
           <img src="static/images/telephone.jpg">
@@ -44,7 +46,7 @@
         </div>
         <div class="location">
           <img src="static/images/location.jpg">
-          <a :href="detail.url" @click.stop>
+          <a @click.prevent.stop='goMap(detail.address, detail.address, detail.latitude, detail.longitude)'>
             <p><span>地点：</span>{{detail.diaochang}}</p>
           </a>
         </div>
@@ -83,7 +85,6 @@
 
 <script>
 import { Toast } from 'mint-ui'
-import apiurl from '../../Globle.js'
 export default {
   data() {
     return {
@@ -118,6 +119,11 @@ export default {
     }
   },
   methods: {
+    goMap(name, addr, lat, lng) {
+      this.$router.push({
+        name: 'navMap', params: { name: name, addr: addr, lat: lat, lng: lng }
+      })
+    },
     gb(ev) {
       this.isShowImg = false
     },

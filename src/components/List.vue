@@ -3,9 +3,8 @@
     <div class="list">
       <div class="list-item" v-for="(item, index) in lists" :key="item" @click="displayDetail(item.id)">
         <div class="img">
-         <img v-lazy="imgSrc+item.photo[0]"
-          v-if="item.photo[0].indexOf('http') === -1" >
-          <img v-lazy="item.photo[0]" v-else>
+         <!-- <img v-lazy="imgSrc+item.photo[0]"> -->
+          <img v-lazy="item.photo[0]">
         </div>
         <div class="name">
           <img src="static/images/icon01.jpg">
@@ -59,14 +58,52 @@ export default {
       return this.$store.state.selectCity.localCity
     },
     selectCity() {
-      return this.$store.state.selectCity.selectCity
+      return this.$store.state.selectCity.selectCity ? this.$store.state.selectCity.selectCity : '南昌'
     }
   },
+  mounted() {
+    // 设置定时器避开返回定位数据时差
+    let here = this
+    let timevar = setInterval(function(){
+        if (here.latitude == '' || here.longitude == '') {
+            here.getlocation();
+            return false;
+        }
+        here.getdata()
+        window.clearInterval(timevar)
+    },300)
+  },
   created() {
-    this.getlocation()
     window.getlocationinfo = this.getlocationinfo
   },
   methods: {
+    getdata(){
+      let weuserid = this.checkLogin(false)
+      this.$http({
+        method:'post',
+        data:'city='+this.selectCity+'&is_tui=true&weuserid='+weuserid+'&latitude='+this.latitude+'&longitude='+this.longitude,
+        url:global.url+'/api/getfishing',
+        header: {  
+            "Content-Type": "application/x-www-form-urlencoded"
+        },  
+      }).then(res=>{
+        if (res.data.code === 1) {
+          let datas = res.data.data.data
+          for (let i = 0; i < datas.length; i++) {
+            let photos = datas[i].photo
+            for (let j = 0; j < photos.length; j++) {
+              photos[j] = this.imgSrc + photos[j]
+            }
+          }
+          this.cateid = res.data.data.focus.id
+          this.lists = res.data.data.data
+        }
+      })
+      .catch(e => {
+        console.log(e)
+      })
+
+    },
     getlocation(){
         // 获取当前位置
         if (window.settings) {
@@ -129,38 +166,6 @@ export default {
         name: 'detail', params: { id: id }
       })
     }
-  },
-  mounted() {
-    
-    let weuserid = this.checkLogin(false)
-    
-    this.$http({
-        method:'post',
-        data:'city='+this.selectCity+'&is_tui=true&weuserid='+weuserid+'&latitude='+this.latitude+'&longitude='+this.longitude,
-        url:global.url+'/api/getfishing',
-        header: {  
-            "Content-Type": "application/x-www-form-urlencoded"
-        },  
-      }).then(res=>{
-        if (res.data.code === 1) {
-          let datas = res.data.data.data
-          for (let i = 0; i < datas.length; i++) {
-            let photos = datas[i].photo
-            for (let j = 0; j < photos.length; j++) {
-              photos[j] = this.imgSrc + photos[j]
-            }
-          }
-          this.cateid = res.data.data.focus.id
-          this.lists = res.data.data.data
-
-          // localStorage.setItem('fish_page_lists', res.data.data.data)
-          // localStorage.setItem('fish_page_types', res.data.data.cate)
-          // localStorage.setItem('fish_page_cateid', res.data.data.focus.id)
-        }
-      })
-      .catch(e => {
-        console.log(e)
-      })
   }
 }
 </script>

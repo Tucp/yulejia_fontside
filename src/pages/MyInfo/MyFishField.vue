@@ -109,7 +109,7 @@ export default {
           }, 900);
         } else {
           Toast({
-            message: '网络出错了QAQ',
+            message: '暂无数据',
             position: 'middle',
             duration: 900
           });

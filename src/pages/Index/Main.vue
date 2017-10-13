@@ -3,9 +3,10 @@
     <y-head></y-head>
     <y-navbar></y-navbar>
 
-    <transition name="fade" mode="out-in">
-      <router-view></router-view>
-    </transition>
+    <keep-alive>
+        <router-view></router-view>
+    </keep-alive>
+
   </div>
 </template>
 
@@ -110,6 +111,13 @@ export default {
   },
   mounted () {
     
+  },
+
+  activated () {
+    alert(3)
+  },
+  deactivated () {
+    alert(4)
   },
   components: {
     'y-head': Head,

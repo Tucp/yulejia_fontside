@@ -14,7 +14,8 @@
             <p v-for="(item, index) in item.type" v-if="index <= 2">{{item.name}}</p>
           </div>
           <div class="distance">
-            <p>{{item.price}}元/{{item.unit}}</p>
+            <p v-if="item.unit == '不详'">不详</p>
+            <p v-else>{{item.price}}元/{{item.unit}}</p>
 
             <span  @click.prevent.stop='goMap(item.title, item.address, item.latitude, item.longitude)' style="float:right">
               距离：{{item.distance}}km
@@ -126,7 +127,7 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 2rem;
+  width: 2.5rem;
 }
 
 .fishfield-item .intro .name img {

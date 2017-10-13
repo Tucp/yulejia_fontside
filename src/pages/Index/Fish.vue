@@ -8,10 +8,11 @@
       </div>
     <header>
       <p>钓场</p>
+      <router-link to="/start">
+         <img src="static/images/sousuo.png" class="find">
+      </router-link>
     </header> 
-    <router-link to="/start">
-      <img src="static/images/sousuo.png" class="find">
-    </router-link>
+    
     <div class="select">
       <div class="domain sec" :class="{isBorder: d == true}" @click.stop.prevent="domain('brief1')">
         区域 <span class="sanB" v-if="d==false"></span><span class="sanA" v-else></span>
@@ -4503,7 +4504,6 @@ export default {
         }
     },
     mounted() {
-        this.getlocation()
         // 设置参照物与比较物
         let p = 0,
             t = 0
@@ -4523,10 +4523,6 @@ export default {
                 t = p
             }, 0)
         })
-
-        if (this.latitude == '' || this.longitude == '') {
-            this.getlocation()
-        }
 
         this.trigger = this.$el
         this.scroller = this.$el
@@ -4560,7 +4556,15 @@ export default {
         this.showCityList.map(a => a.selected = false);
         this.showCityList[index1].selected = true;
 
-        this.getData()
+        let here = this
+        let timevar = setInterval(function(){
+            if (here.latitude == '' || here.longitude == '') {
+                here.getlocation();
+                return false;
+            }
+        here.getData();
+            window.clearInterval(timevar)
+        },300)
     },
     methods: {
         closeAdd: function () {
@@ -4837,7 +4841,7 @@ export default {
                 let weuserid = this.checkLogin(false)
                 this.$http({
                     method:'post',
-                    data:'city=南昌&is_tui=false&tag='+this.tag+'&district='+this.ydDistrict+'&get_cate=true&cate_id='+this.fishfield+'&weuserid='+weuserid+'&latitude='+this.latitude+'&longitude='+this.longitude,
+                    data:'city=南昌&tag='+this.tag+'&district='+this.ydDistrict+'&get_cate=true&cate_id='+this.fishfield+'&weuserid='+weuserid+'&latitude='+this.latitude+'&longitude='+this.longitude,
                     url:global.url+'/api/getfishing',
                     header: {  
                       "Content-Type": "application/x-www-form-urlencoded"  
@@ -4864,16 +4868,19 @@ export default {
         },
         getNewData() {
             this.sorttext = '最新鱼汛'
+            this.tag = 'new'
             this.$store.commit('selectTag', 'new')
             this.getData()
         },
         getNearData() {
             this.sorttext = '离我最近'
+            this.tag = 'near'
             this.$store.commit('selectTag', 'near')
             this.getData()
         },
         getHotData() {
             this.sorttext = '人气最高'
+            this.tag = 'hot'
             this.$store.commit('selectTag', 'hot')
             this.getData()
         },
@@ -4899,7 +4906,7 @@ export default {
                 }
             }else{
                 //网页内
-                this.$refs.qy.innerText = '定位失败，请手动选择区域'
+                // this.$refs.qy.innerText = '定位失败，请手动选择区域'
             }
         },
         getlocationinfo(locationinfo){
@@ -5137,7 +5144,7 @@ export default {
         border-bottom: 1px solid #f0f0f0;
         font-size: 17.36px;
         background-color: #343434;
-        z-index: 9999;
+        z-index: 9999999999;
     }
 
     header p {
@@ -5176,7 +5183,7 @@ export default {
     }
 
     .select {
-        z-index: 9999;
+        z-index: 10000;
         position: fixed;
         width: 100%;
         height: 1.30rem;

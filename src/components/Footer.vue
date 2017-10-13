@@ -31,7 +31,7 @@ export default {
 <style lang="css" scoped>
 footer {
   border-top: 1px solid #dcdddd;
-  z-index: 99;
+  z-index: 9999999;
   position: fixed;
   height: 1.40740741rem;
   bottom: 0;
