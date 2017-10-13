@@ -1,7 +1,6 @@
 # 鱼乐家
 
 > 鱼乐家
-> summer : 1012684399@qq.com
 
 ## Build Setup
 
